@@ -6,11 +6,7 @@
 #    By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 10:28:10 by jerperez          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2024/04/20 10:57:21 by jerperez         ###   ########.fr        #
-=======
-#    Updated: 2024/04/16 11:54:25 by jerperez         ###   ########.fr        #
->>>>>>> refs/remotes/origin/main
+#    Updated: 2024/04/20 11:04:20 by jerperez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +16,7 @@ CXX = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98	
 
 SRCS	=	main.cpp\
-<<<<<<< HEAD
 			Bureaucrat.cpp\
-=======
-			Cat.cpp\
-			Dog.cpp\
-			WrongDog.cpp\
-			WrongCat.cpp\
-			Animal.cpp\
-			WrongAnimal.cpp\
->>>>>>> refs/remotes/origin/main
 
 OBJ_DIR	=	obj
 
