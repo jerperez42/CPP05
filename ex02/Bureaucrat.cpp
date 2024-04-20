@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:19:59 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 16:24:01 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:19:09 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,25 @@ void	Bureaucrat::signForm(AForm& form)
 
 void	Bureaucrat::executeForm(AForm const &form)
 {
-	if (false == form.getSigned())
+	try
 	{
-		std::cerr << this->_name << " couldn’t execute " << form.getName() << " because if was not signed." << std::endl;
-		return ;
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
 	}
-	if (form.getExec() < this->_grade)
+	catch(const AForm::GradeTooLowException& e)
 	{
-		std::cerr << this->_name << " couldn’t execute " << form.getName() << " because they are underqualified." << std::endl;
-		return ;
+		std::cout << this->_name << " couldn’t execute " << form.getName() << " because they are underqualified." << std::endl;
 	}
-	std::cout << this->_name << " executed " << form.getName() << std::endl;
-	form.execute(*this);
+	catch(const AForm::GradeTooHighException& e)
+	{
+		std::cout << this->_name << " couldn’t execute " << form.getName() << " because they are overqualified." << std::endl;
+	}
+	catch(const AForm::NotSignedException& e)
+	{
+		std::cout << this->_name << " couldn’t execute " << form.getName() << " because the form is not signed." << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << this->_name << " couldn’t execute " << form.getName() << " because of some reason." << std::endl;
+	}
 }

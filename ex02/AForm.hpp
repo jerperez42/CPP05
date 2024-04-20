@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 13:39:28 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 16:22:20 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:16:07 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ class AForm
 			public:
 				virtual const char* what(void) const throw();
 		};
+		class NotSignedException : public std::exception
+		{
+			public:
+				virtual const char* what(void) const throw();
+		};
 		AForm(void) :
 			_name(F_NAME_DFLT),
 			_sign(GRADE_RANK_LOW),
@@ -60,7 +65,7 @@ class AForm
 		const t_grade		&getExec(void) const;
 		const bool			&getSigned(void) const;
 		void				beSigned(const Bureaucrat&);
-		virtual void		execute(Bureaucrat const &) {};
+		virtual void		execute(Bureaucrat const &) const;
 };
 
 std::ostream& operator<<(std::ostream&, const AForm&);

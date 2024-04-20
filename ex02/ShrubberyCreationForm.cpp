@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 16:09:52 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 16:19:51 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:03:03 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
 	this->_target = other._target;
+	return (*this);
 }
 
 const std::string&	ShrubberyCreationForm::getTarget(void) const
@@ -24,15 +25,15 @@ const std::string&	ShrubberyCreationForm::getTarget(void) const
 	return (this->_target);
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const &executor)
+void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	std::ofstream ofile;
 
-	ofile.open(this->_target + "_shrubbery");
+	this->AForm::execute(executor);
+	ofile.open((this->_target + std::string("_shrubbery")).c_str());
 	if (false == ofile.is_open())
 	{
-		std::cerr << "ShrubberyCreationForm: failed to create file" << std::endl;
-		return ;
+		throw std::exception();
 	}
 	ofile << "ASCII trees" << std::endl;
 	ofile.close();

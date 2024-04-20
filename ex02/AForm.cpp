@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:19:59 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 16:20:30 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:17:27 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ const char*	AForm::GradeTooLowException::what(void) const throw()
 const char*	AForm::GradeTooHighException::what(void) const throw()
 {
 	return (F_EHIGHRANK);
+}
+
+const char*	AForm::NotSignedException::what(void) const throw()
+{
+	return (F_ENOSIGN);
 }
 
 AForm&	AForm::operator=(const AForm& other)
@@ -76,4 +81,14 @@ void	AForm::beSigned(const Bureaucrat& b)
 	if (this->_sign < grade)
 		throw GradeTooLowException();
 	this->_signed = true;
+}
+
+void	AForm::execute(Bureaucrat const &b) const
+{
+	const t_grade	grade = b.getGrade();
+
+	if (false == this->_signed)
+		throw NotSignedException();
+	else if (this->_exec < grade)
+		throw GradeTooLowException();
 }

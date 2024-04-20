@@ -6,16 +6,16 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:19:00 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 16:12:33 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:26:26 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRESIDENTIALPARDONFORM_H
 # define PRESIDENTIALPARDONFORM_H
 
-# define F_SIGN 25
-# define F_EXEC 5
-# define F_NAME "Presidential Pardon From"
-# define F_TARGET "<target>"
+# define FP_SIGN 25
+# define FP_EXEC 5
+# define FP_NAME "Presidential Pardon Form"
+# define FP_TARGET "<target>"
 
 #endif

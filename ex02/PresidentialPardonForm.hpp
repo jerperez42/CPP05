@@ -6,12 +6,12 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:19:00 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 16:11:45 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:26:26 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFROM_HPP
-# define PRESIDENTIALPARDONFROM_HPP
+#ifndef PRESIDENTIALPARDONForm_HPP
+# define PRESIDENTIALPARDONForm_HPP
 
 #include "AForm.hpp"
 #include "AForm.h"
@@ -24,17 +24,17 @@ class PresidentialPardonForm: public AForm
 		std::string	_target;
 	public:
 		PresidentialPardonForm(void) :
-			AForm(F_NAME, F_SIGN, F_EXEC), _target(F_TARGET) {};
+			AForm(FP_NAME, FP_SIGN, FP_EXEC), _target(FP_TARGET) {};
 		PresidentialPardonForm(std::string target) :
-			AForm(F_NAME, F_SIGN, F_EXEC), _target(target) {};
+			AForm(FP_NAME, FP_SIGN, FP_EXEC), _target(target) {};
 		PresidentialPardonForm(const PresidentialPardonForm& other) :
-			AForm(F_NAME, F_SIGN, F_EXEC), _target(other._target) {};
+			AForm(FP_NAME, FP_SIGN, FP_EXEC), _target(other._target) {};
 		~PresidentialPardonForm(void) {};
 
 		PresidentialPardonForm&	operator=(const PresidentialPardonForm&);
 		const std::string&		getTarget(void) const;
 
-		void					execute(Bureaucrat const &);
+		void					execute(Bureaucrat const &) const;
 };
 
 #endif
