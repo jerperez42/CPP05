@@ -6,14 +6,15 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:19:59 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 13:28:10 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:00:10 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-//Bureaucrat& const operator=(Bureaucrat& const); //
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <ostream>
+#include <iostream>
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 {
@@ -23,12 +24,12 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 
 const char*	Bureaucrat::GradeTooLowException::what(void) const throw()
 {
-	return (ELOWRANK);
+	return (B_ELOWRANK);
 }
 
 const char*	Bureaucrat::GradeTooHighException::what(void) const throw()
 {
-	return (EHIGHRANK);
+	return (B_EHIGHRANK);
 }
 
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other)
@@ -42,12 +43,13 @@ std::string const	&Bureaucrat::getName(void) const
 {
 	return (this->_name);
 }
-unsigned int const	&Bureaucrat::getGrade(void) const
+
+t_grade const	&Bureaucrat::getGrade(void) const
 {
 	return (this->_grade);
 }
 
-unsigned int const	&Bureaucrat::checkGrade(unsigned int &grade) const
+t_grade const	&Bureaucrat::checkGrade(t_grade &grade) const
 {
 	if (1 > grade)
 		throw GradeTooHighException();
@@ -66,4 +68,25 @@ void	Bureaucrat::demote(void)
 {
 	this->_grade += 1;
 	this->checkGrade(this->_grade);
+}
+
+void	Bureaucrat::signForm(Form& form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->_name << " signed " << form.getName() << std::endl;
+	}
+	catch(const Form::GradeTooLowException& e)
+	{
+		std::cout << this->_name << " couldn’t sign " << form.getName() << " because they are underqualified." << std::endl;
+	}
+	catch(const Form::GradeTooHighException& e)
+	{
+		std::cout << this->_name << " couldn’t sign " << form.getName() << " because they are overqualified." << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << this->_name << " couldn’t sign " << form.getName() << " because of some reason." << std::endl;
+	}
 }
