@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:19:59 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 15:13:20 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:20:30 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include "AForm.hpp"
 #include <ostream>
 
-std::ostream& operator<<(std::ostream& os, const Form& f)
+std::ostream& operator<<(std::ostream& os, const AForm& f)
 {
     os	<< f.getName() << ", "
 		<< (f.getSigned() ? "" : "not ") << "signed, "
-		<< "grade " << f.getReqSign() << " bureaucrat required to sign, "
-		<< f.getReqExec() << " to execute.";
+		<< "grade " << f.getSign() << " bureaucrat required to sign, "
+		<< f.getExec() << " to execute.";
     return (os);
 }
 
@@ -45,14 +45,14 @@ const std::string	&AForm::getName(void) const
 	return (this->_name);
 }
 
-const t_grade	&AForm::getReqSign(void) const
+const t_grade	&AForm::getSign(void) const
 {
-	return (this->_req_sign);
+	return (this->_sign);
 }
 
-const t_grade	&AForm::getReqExec(void) const
+const t_grade	&AForm::getExec(void) const
 {
-	return (this->_req_exec);
+	return (this->_exec);
 }
 
 const bool	&AForm::getSigned(void) const
@@ -73,7 +73,7 @@ void	AForm::beSigned(const Bureaucrat& b)
 {
 	const t_grade	grade = b.getGrade();
 
-	if (this->_req_sign < grade)
+	if (this->_sign < grade)
 		throw GradeTooLowException();
 	this->_signed = true;
 }

@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:05:07 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 15:14:07 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:42:19 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ class Bureaucrat
 
 		void				promote(void);
 		void				demote(void);
-		void				signForm(Form&);
+		void				signForm(AForm&);
+		void				executeForm(AForm const &);
 };
 
 std::ostream& operator<<(std::ostream&, const Bureaucrat&);

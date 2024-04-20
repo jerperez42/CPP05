@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:19:59 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 15:13:55 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:24:01 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ void	Bureaucrat::signForm(AForm& form)
 		form.beSigned(*this);
 		std::cout << this->_name << " signed " << form.getName() << std::endl;
 	}
-	catch(const Form::GradeTooLowException& e)
+	catch(const AForm::GradeTooLowException& e)
 	{
 		std::cout << this->_name << " couldn’t sign " << form.getName() << " because they are underqualified." << std::endl;
 	}
-	catch(const Form::GradeTooHighException& e)
+	catch(const AForm::GradeTooHighException& e)
 	{
 		std::cout << this->_name << " couldn’t sign " << form.getName() << " because they are overqualified." << std::endl;
 	}
@@ -89,4 +89,20 @@ void	Bureaucrat::signForm(AForm& form)
 	{
 		std::cout << this->_name << " couldn’t sign " << form.getName() << " because of some reason." << std::endl;
 	}
+}
+
+void	Bureaucrat::executeForm(AForm const &form)
+{
+	if (false == form.getSigned())
+	{
+		std::cerr << this->_name << " couldn’t execute " << form.getName() << " because if was not signed." << std::endl;
+		return ;
+	}
+	if (form.getExec() < this->_grade)
+	{
+		std::cerr << this->_name << " couldn’t execute " << form.getName() << " because they are underqualified." << std::endl;
+		return ;
+	}
+	std::cout << this->_name << " executed " << form.getName() << std::endl;
+	form.execute(*this);
 }
