@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.h                              :+:      :+:    :+:   */
+/*   Intern.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 16:00:31 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/23 13:29:52 by jerperez         ###   ########.fr       */
+/*   Created: 2024/04/20 11:05:07 by jerperez          #+#    #+#             */
+/*   Updated: 2024/04/23 14:27:26 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_H
-# define ROBOTOMYREQUESTFORM_H
+#ifndef INTERN_H
+# define INTERN_H
 
-# define FR_SIGN 72
-# define FR_EXEC 45
-# define FR_NAME "robotomy request"
-# define FR_TARGET "<target>"
+# define I_NFORMS 4
+# define B_EUNKNOWN "Intern: error: unknown form"
 
 #endif

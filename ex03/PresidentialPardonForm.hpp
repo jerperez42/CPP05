@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:19:00 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 17:26:26 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:52:25 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class PresidentialPardonForm: public AForm
 			AForm(FP_NAME, FP_SIGN, FP_EXEC), _target(target) {};
 		PresidentialPardonForm(const PresidentialPardonForm& other) :
 			AForm(FP_NAME, FP_SIGN, FP_EXEC), _target(other._target) {};
-		~PresidentialPardonForm(void) {};
+		virtual ~PresidentialPardonForm(void) {};
 
 		PresidentialPardonForm&	operator=(const PresidentialPardonForm&);
 		const std::string&		getTarget(void) const;

@@ -6,14 +6,12 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:32:34 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 18:09:59 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:04:18 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Intern.hpp"
 #include "Bureaucrat.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
 #include <iostream>
 #include <fstream>
 #include <sys/stat.h>
@@ -21,122 +19,60 @@
 
 int main(void)
 {
-	std::cout << "--------Default--------" << std::endl;
+	std::cout << "--------Constructors--------" << std::endl;
 	{
-		PresidentialPardonForm pardon;
-		std::cout << pardon << std::endl;
-		std::cout << std::endl;
-
-		RobotomyRequestForm robotomy;
-		std::cout << robotomy << std::endl;
-		std::cout << std::endl;
-
-		ShrubberyCreationForm shrub;
-		std::cout << shrub << std::endl;
-		std::cout << std::endl;
+		Intern steve;
+		Intern bob(steve);
+		steve = bob;
 	}
 
 	std::cout << "--------OK--------" << std::endl;
 	{
+		Intern 		steve;
 		Bureaucrat	abraracourcix("Abraracourcix", 1);
+		AForm 		*f;
+		std::string target("Caius Bonus");
+		std::string name;
 
-		PresidentialPardonForm pardon("Abraracourcix");
-		std::cout << pardon << std::endl;
-		abraracourcix.signForm(pardon);
-		std::cout << pardon << std::endl;
-		abraracourcix.executeForm(pardon);
-		std::cout << std::endl;
+		name = FS_NAME;
+		f = steve.makeForm(name, target);
+		std::cout << *f << "(" << name << ")" << std::endl;
+		f->beSigned(abraracourcix);
+		abraracourcix.executeForm(*f);
+		delete f;
 
-		RobotomyRequestForm robotomy("Caius Bonus");
-		std::cout << robotomy << std::endl;
-		abraracourcix.signForm(robotomy);
-		std::cout << robotomy << std::endl;
-		abraracourcix.executeForm(robotomy);
-		std::cout << std::endl;
+		name = FP_NAME;
+		f = steve.makeForm(name, target);
+		std::cout << *f << "(" << name << ")" << std::endl;
+		f->beSigned(abraracourcix);
+		abraracourcix.executeForm(*f);
+		delete f;
 
-		ShrubberyCreationForm shrub("Rome");
-		std::cout << shrub << std::endl;
-		abraracourcix.signForm(shrub);
-		std::cout << shrub << std::endl;
-		abraracourcix.executeForm(shrub);
-		std::cout << std::endl;
+		name = FR_NAME;
+		f = steve.makeForm(name, target);
+		std::cout << *f << "(" << name << ")" << std::endl;
+		f->beSigned(abraracourcix);
+		abraracourcix.executeForm(*f);
+		delete f;
 	}
 
-	std::cout << "--------Execute LOW--------" << std::endl;
+	std::cout << "--------Error--------" << std::endl;
 	{
-		Bureaucrat	abraracourcix("Abraracourcix", 1);
-		Bureaucrat	penultimo("Penultimo", 149);
+		Intern steve;
+		AForm *f;
+		std::string target("Steve");
+		std::string name;
 
-		PresidentialPardonForm pardon("Abraracourcix");
-		std::cout << pardon << std::endl;
-		abraracourcix.signForm(pardon);
-		std::cout << pardon << std::endl;
-		penultimo.executeForm(pardon);
-		std::cout << std::endl;
-
-		RobotomyRequestForm robotomy("Caius Bonus");
-		std::cout << robotomy << std::endl;
-		abraracourcix.signForm(robotomy);
-		std::cout << robotomy << std::endl;
-		penultimo.executeForm(robotomy);
-		std::cout << std::endl;
-
-		ShrubberyCreationForm shrub("Rome");
-		std::cout << shrub << std::endl;
-		abraracourcix.signForm(shrub);
-		std::cout << shrub << std::endl;
-		penultimo.executeForm(shrub);
-		std::cout << std::endl;
-	}
-
-	std::cout << "--------Execute Unsigned--------" << std::endl;
-	{
-		Bureaucrat	abraracourcix("Abraracourcix", 1);
-
-		PresidentialPardonForm pardon("Abraracourcix");
-		std::cout << pardon << std::endl;
-		abraracourcix.executeForm(pardon);
-		std::cout << std::endl;
-
-		RobotomyRequestForm robotomy("Caius Bonus");
-		std::cout << robotomy << std::endl;
-		abraracourcix.executeForm(robotomy);
-		std::cout << std::endl;
-
-		ShrubberyCreationForm shrub("Rome");
-		std::cout << shrub << std::endl;
-		abraracourcix.executeForm(shrub);
-		std::cout << std::endl;
-	}
-
-	std::cout << "--------Robotomy 50%--------" << std::endl;
-	{
-		Bureaucrat	abraracourcix("Abraracourcix", 1);
-
-		RobotomyRequestForm robotomy("Caius Bonus");
-		abraracourcix.signForm(robotomy);
-		std::cout << robotomy << std::endl;
-		for (int i = 0; i < 10; i++)
-			abraracourcix.executeForm(robotomy);
-		std::cout << std::endl;
-	}
-
-	std::cout << "--------Shrubbery Fail (chmod 000)--------" << std::endl;
-	{
-		Bureaucrat	abraracourcix("Abraracourcix", 1);
-		std::string target("fail");
-		std::string name = target + std::string("_shrubbery");
-		std::ofstream ofile;
-
-		ShrubberyCreationForm shrub(target);
-		abraracourcix.signForm(shrub);
-		std::cout << shrub << std::endl;
-		ofile.open(name.c_str());
-		chmod(name.c_str(), 000);
-		abraracourcix.executeForm(shrub);
-		chmod(name.c_str(), 0777);
-		ofile.close();
-		unlink(name.c_str());
-		std::cout << std::endl;
+		try
+		{
+			name = "tenure";
+			f = steve.makeForm(name, target);
+			std::cout << f << "(" << name << ")" << std::endl;
+			delete f;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
 }

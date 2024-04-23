@@ -6,7 +6,7 @@
 #    By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 10:28:10 by jerperez          #+#    #+#              #
-#    Updated: 2024/04/20 18:14:24 by jerperez         ###   ########.fr        #
+#    Updated: 2024/04/23 14:51:28 by jerperez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS	=	main.cpp\
 			PresidentialPardonForm.cpp\
 			RobotomyRequestForm.cpp\
 			ShrubberyCreationForm.cpp\
+			Intern.cpp\
 
 OBJ_DIR	=	obj
 

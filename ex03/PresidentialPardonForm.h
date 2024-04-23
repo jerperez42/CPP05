@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:19:00 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 17:26:26 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:30:14 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define FP_SIGN 25
 # define FP_EXEC 5
-# define FP_NAME "Presidential Pardon Form"
+# define FP_NAME "presidential pardon"
 # define FP_TARGET "<target>"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 13:39:28 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 17:16:07 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:56:23 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ class AForm
 			_sign(checkGrade(other._sign)),
 			_exec(checkGrade(other._exec)),
 			_signed(false) {};
-		~AForm(void) {};
+		virtual ~AForm(void) {};
 		AForm&	operator=(const AForm&);
 		const std::string	&getName(void) const;
 		const t_grade		&getSign(void) const;

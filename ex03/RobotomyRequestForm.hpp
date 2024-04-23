@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 16:02:28 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/20 17:26:26 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:52:32 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class RobotomyRequestForm: public AForm
 			AForm(FR_NAME, FR_SIGN, FR_EXEC), _target(target) {};
 		RobotomyRequestForm(const RobotomyRequestForm& other) :
 			AForm(FR_NAME, FR_SIGN, FR_EXEC), _target(other._target) {};
-		~RobotomyRequestForm(void) {};
+		virtual ~RobotomyRequestForm(void) {};
 
 		RobotomyRequestForm&	operator=(const RobotomyRequestForm&);
 		const std::string&		getTarget(void) const;
